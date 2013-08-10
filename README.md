@@ -1,15 +1,29 @@
 This script allows you to extract Journal metadata from a Sugar Journal backup or several journal backups. These are usually found on the OLPC XS School Server under /library/users/
 
 
-At the terminal prompt
-run the script by typing:
+Running the script:
+#####################
 
->> python olpc_dataprocessor.py journals_data.csv
+The scripts expects the directory structure to be "ROOT_DIRECTORY/users/*/*/*/*/metadata/*"
+
+At the terminal prompt run the script by typing:
+
+>> python olpc_dataprocessor.py -r ROOT_DIRECTORY_PATH  -o  OUTPUT_FILE_PATH
+
+for example to process journals backups that are in a root folder called data and has the directory structure 
+"data/users/*/*/*/*/metadata/*"", you would run the script by typing the following at the prompt: 
+
+>> python olpc_dataprocessor.py -r data  -o  journals_data.csv
+
+The script would process the all the journal backups found in the users/*  directories and output a file call journals_data.csv. 
 
 
-This will create a file called journals_data.csv Open in a text editor or import into a spreadsheet or database or statistical analysis package. Thats it! 
+Viewing the output csv file
+###########################
 
-Comma Separated Values (CSV), OpenDocument Spreadsheet (ODS), and Microsoft Excel (XLS) formats of sample data are included. These were extracted from three OLPC XO laptops with arbitrary data. The source data (folders begin with SH*) are also included.
+For this example the created file will be journals_data.csv. To view the contents of the file, you can open it in a spreadsheet or text editor etc or your favorite statistical analysis package. P.S the delimiter for the csv file is an "*"
+
+Comma Separated Values (CSV), OpenDocument Spreadsheet (ODS), and Microsoft Excel (XLS) formats of sample data are included. These were extracted from three OLPC XO laptops with arbitrary data. The source data are also included(see the data folder).
 
 Email 
 Leotis Buchanan at LeotisBuchanan@exterbox.com

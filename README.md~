@@ -7,7 +7,7 @@ run the script by typing:
 >> python olpc_dataprocessor.py journals_data.csv
 
 
-This will create a file called journals_data.csv Open in a text editor or import into a spreadsheet or database or statistical analysis package. Thats it! 
+This will create a file called journals_data.csv.To view the file, open in a text editor or import into a spreadsheet or database or statistical analysis package. Thats it! 
 
 Comma Separated Values (CSV), OpenDocument Spreadsheet (ODS), and Microsoft Excel (XLS) formats of sample data are included. These were extracted from three OLPC XO laptops with arbitrary data. The source data (folders begin with SH*) are also included.
 
