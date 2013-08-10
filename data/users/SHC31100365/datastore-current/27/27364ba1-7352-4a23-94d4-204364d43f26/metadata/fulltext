@@ -1,0 +1,1 @@
+dbus.Struct((dbus.String(u'the future is now   '), dbus.Int32(21)), signature=None, variant_level=1)

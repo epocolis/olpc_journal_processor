@@ -1,0 +1,1 @@
+["Implode save game", [1, 0], {"difficulty": 0, "fragmentation": 0, "seed": 63917, "board": [0, 0], "win_draw_flag": true, "win_color": 4, "winning_moves": [[1, 0], [1, 0], [0, 1], [0, 1], [0, 0]], "redo_stack": [], "undo_stack": [], "size": [8, 6]}]
