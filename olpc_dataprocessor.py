@@ -5,7 +5,7 @@ olpc XO log files processor
 :license: GPL, see LICENSE for more details.
 """
 
-
+import codecs
 import argparse
 import glob
 import csv
@@ -25,7 +25,8 @@ def process(paths,output_file_name):
     cnt = 0
     for path in paths:
         #read the content of the file
-        f = open(path)
+        #f = codecs.open(path,"r","utf-8")
+        f = open(path,"r")
         meta_data_content = f.read()
 
 
@@ -33,6 +34,9 @@ def process(paths,output_file_name):
         path = path.split("/")
         meta_data_name = clean(path[7])
         if meta_data_name == "preview":
+            meta_data_content = "NA"
+
+        if meta_data_name == "cover_image":
             meta_data_content = "NA"
         user_id = clean(path[5])
         #get this user meta data
@@ -48,8 +52,17 @@ def process(paths,output_file_name):
             user_meta_data_dict['SH'] = clean(path[2])
             #stick the dictionary back in
             users_meta_data[user_id] = user_meta_data_dict
+    return users_meta_data
 
-    
+def generateJSON(users_meta_data):
+    import pprint
+    import json
+    import io, json
+    with io.open('data.json', 'w') as f:
+        f.write(unicode(json.dumps(users_meta_data.values(), ensure_ascii=True)))
+
+
+def generateCSV(output_file_name,users_meta_data): 
     csvfile = open(output_file_name,'w+')
     writer = csv.writer(csvfile, delimiter='*')
     size = []
@@ -121,7 +134,10 @@ if __name__ == '__main__':
     root_directory = args.root
     output_path  = args.output
     paths =  getMetaDataPath(root_directory)
-    process(paths, output_path)   
+    users_meta_data =    process(paths, output_path)   
+    generateJSON(users_meta_data)
+    #generateCSV(output_path,users_meta_data)
+
 
 
 

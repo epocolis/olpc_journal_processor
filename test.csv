@@ -1,0 +1,78 @@
+idx*act*icon_color*activity_id*keep*mime_type*mtime*preview*share_scope*timestamp*title*title_set_by_user*uid
+0*vu.lux.olpc.Speak*#00EA11,#5E008C*f82c3cb5f11f12c4a44d44c6f5daa8667479d868*0*NA*2011-09-03T19:34:22.242063*NA*private*1315103662*Speak Activity*1*3d2ac153-75e4-4d39-9832-3c654251efc2
+1*vu.lux.olpc.Speak*#FF2B34,#FF8F00*737006e8884dd0c63b3dda2e49b4efdfd8b3352b*0*NA*2013-07-30T01:41:40.148157*NA*private*1375148500*Speak Activity*0*48efe833-0b59-4e7d-89e2-885073cd0b25
+2*NA*#00EA11,#5E008C*NA*0*application/vnd.olpc-sugar*2011-11-06T13:22:51.797344*NA*NA*1320614571*telescope-12.xo*NA*fa6b16a1-f48e-4e18-b735-44347417086d
+3*org.laptop.Memorize*#FF2B34,#FF8F00*8879bd0b419d7ff55c776e78af93d327d438b1df*0*application/x-memorize-project*2013-07-29T00:41:15.203908*NA*private*1375058475*Memorize Activity*0*6ebfe5b6-f57b-496b-8bbe-9dd58dc389a2
+4*com.garycmartin.Moon*#00EA11,#5E008C*f055fed53b303b6f50a8b3301ad33312670bd87c*0*NA*2011-09-03T19:34:46.038137*NA*private*1315103686*Moon Activity*1*89de710e-f8a7-4389-9e72-b046c92e1a92
+5*org.laptop.TamTamMini*#00A0FF,#9A5200*df9c4b24872dfc6fad736b3d6e689bff80f16843*0*NA*2013-07-22T02:01:44.234283*NA*private*1374458504*TamTamMini Activity*0*603e09c0-f9ea-4f0c-aeba-bcc1b17882c6
+6*org.laptop.Terminal*#AC32FF,#FF8F00*831d0afc29d23fbd5422970ecda309ff5bf463f2*0*NA*2013-08-02T01:15:52.538456*NA*private*1375406152*Terminal Activity*0*75c13f49-02bf-45a3-9d43-16d23344217a
+7*vu.lux.olpc.Maze*#AC32FF,#FF8F00*c1d36085ada3e4397d0ef75a091524a8baab5f1b*0*NA*2013-07-29T00:44:02.774010*NA*private*1375058642*Maze Activity*0*e01a35f9-b077-4d3f-9a56-9931e746ddf2
+8*org.laptop.Oficina*#00A0FF,#9A5200*b410d21e9059318ec7e206706011e28eca87f7a0*0*image/png*2013-07-30T01:27:33.941319*NA*private*1375147653*Paint Activity*0*880c7132-3cd9-4f06-9cbd-12c08879bfae
+9*NA*#00A0FF,#9A5200*NA*0*image/png*2013-07-14T18:21:13.385647*NA*NA*1373826073*"Screenshot of ""Analyze Journal Activity"""*NA*f5c33e3e-6049-4575-8661-36c5cc46da07
+10*org.laptop.WikipediaActivityEN*#FF2B34,#FF8F00*b61d59836099cb30692d45bc235b4745c30bfe59*0*text/plain*2013-07-30T01:40:53.421140*NA*private*1375148453*Computer*0*589c1c15-dab4-404d-ad52-d68a1bf32fb4
+11*org.laptop.TamTamJam*#00EA11,#5E008C*3e073b4dee619841cbab6858aa2990d46f757f32*0*NA*2011-09-03T19:48:41.774045*NA*private*1315104521*TamTamJam Activity*1*6e3ba7da-9e0a-4d22-8066-469170c30ac7
+12*org.laptop.Terminal*#00EA11,#5E008C*63e2dfaee367d39f7b9f16e0ff1df2b40f1d4b9b*0*NA*2013-08-05T23:14:33.791426*NA*private*1375758873*Terminal Activity*0*f018994e-1fdf-4a60-8ad7-f4797a4263d7
+13*org.laptop.physics*#00A0FF,#9A5200*1d696c1f94958cdd92ca0d204734d4dd72fb3dbf*0*application/x-physics-activity*2013-07-14T18:07:18.568478*NA*private*1373825238*Physics Activity*0*15ca013f-4029-4cda-93ed-add7db8b1f0e
+14*org.laptop.TurtleArtActivity*#00EA11,#5E008C*b1601ed090cc81bbb123bd7dc255437970e627ef*0*application/x-turtle-art*2011-09-03T19:38:20.959369*NA*private*1315103900*Turtle Art Activity*0*38864b85-91fb-4776-8483-493a280aed9d
+15*org.eq.FotoToon*#00EA11,#5E008C*dd829396720bc187baada73a3fcf4d3073f6625c*0*application/x-fototoon-activity*2013-08-05T23:08:02.155460*NA*private*1375758482*FotoToon Activity*1*21a4b231-2922-4da4-81cf-fa3482f054d0
+16*vu.lux.olpc.Speak*#FF8F00,#BE9E00*f55d3eff29c1722cbb87191892f82ee00515cfe3*0*NA*2013-08-04T03:54:36.411328*NA*private*1375588476*Speak Activity*1*92d375e1-704b-4255-8850-00533aa3204e
+17*org.laptop.physics*#AC32FF,#FF8F00*138bd2fdec271d21df3cccd9f046015a7f761c15*0*application/x-physics-activity*2013-08-02T01:15:23.977779*NA*private*1375406123*Physics Activity*0*1e3763c8-6c51-4876-b55b-b2244ee8c803
+18*com.laptop.Ruler*#AC32FF,#FF8F00*db611042d23640cb64d6ac27c757536f8462cc6f*0*NA*2013-07-29T00:44:17.154698*NA*private*1375058657*Ruler Activity*0*a44afb83-cb34-44a2-8e52-a4d6ebb6c2dc
+19*org.laptop.Terminal*#00A0FF,#9A5200*08feeeea2bca2a2b577e4df0e052e5ae555add84*0*NA*2013-07-14T22:20:03.810496*NA*private*1373840403*Terminal Activity*0*b81f8d3a-ac8e-417f-9054-6c2ac6d3f0e2
+20*org.laptop.sugar.ReadActivity*#00A0FF,#9A5200*6467c9db23dbb03872b5efc99a3ce7110881f819*0*application/pdf*2013-07-14T18:17:53.489558*NA*NA*1373825873*Little Brother, by Cory Doctorow*1*76febbfc-a583-4973-83a2-dcf9d8e76c78
+21*org.laptop.TurtleArtActivity*#FF2B34,#FF8F00*846d7550bf1a00a9420f7bb2926975a8e9128a0e*0*application/x-turtle-art*2013-07-30T01:39:00.460477*NA*private*1375148340*TurtleBlocks Activity*0*786ba7d2-8807-41ce-8c4a-9fc7af9de9c7
+22*org.laptop.Memorize*#FF8F00,#BE9E00*f21e0d2b0f8a68c586e69bca9f9ae104792762a7*0*NA*2013-08-04T03:58:01.295188*NA*private*1375588681*Memorize Activity*1*1652f9f0-c1c3-4626-8921-b761b5dd868e
+23*org.gnome.Labyrinth*#00EA11,#5E008C*6300dbd6d370ab8f0256d0a47e442352ab50cca8*0*NA*2011-09-03T19:25:21.517370*NA*private*1315103121*Labyrinth Activity*0*016d6a99-ae8e-4915-8a8b-f3ba0609da72
+24*org.laptop.physics*#00EA11,#5E008C*87e2af46ee4b441acb2a8be0419aab33e3efebac*0*application/x-physics-activity*2011-09-03T19:36:22.852301*NA*private*1315103782*Physics Activity*0*0715af38-f13d-452f-bc21-740d8ed90114
+25*org.laptop.Calculate*#00A0FF,#9A5200*b1ee18fcbb272ffe0051c843122341dd63f52522*0*NA*2013-07-14T19:13:27.521884*NA*private*1373829207*Calculate Activity*0*943f5c23-b1e0-4594-b4b2-9ccf356f0749
+26*org.sugarlabs.MusicKeyboard*#FF2B34,#FF8F00*8382c6efdad0c5be0c3e55130ee104355573bac5*0*NA*2013-07-29T00:39:15.891973*NA*private*1375058355*Music Keyboard Activity*0*ca2b668b-183f-435b-9b77-e56263586334
+27*NA*#00EA11,#5E008C*933fa200180d46fcfe1f50737fc6e3f85b29b062*0*text/csv*2013-08-05T23:08:40.265412*NA*NA*1375758520*Measure Log*1*a2613bde-67e8-49eb-be0d-3cb3dcda72db
+28*com.jotaro.ImplodeActivity*#FF2B34,#FF8F00*a1063274334a5cddcb694f7f637ae1c47aae1536*0*NA*2013-07-28T17:51:13.883313*NA*private*1375033873*Implode Activity*0*07b51e88-0ad6-4d68-a437-a177fc16c87a
+29*org.sugarlabs.InfoSlicer*#00A0FF,#9A5200*376d3f0a7817a6f8ca395051fd87f2d4dab0a5e8*0*NA*2013-07-28T17:54:55.496249*NA*private*1375034095*InfoSlicer Activity*0*5d0691ee-24ba-47d1-8ae0-1f3f37c3e15a
+30*org.laptop.Oficina*#00A0FF,#9A5200*ca572fe8b04978b9adacfffd920561e66d10f174*0*image/png*2013-07-14T19:22:19.160165*NA*private*1373829739*Paint Activity*0*6ff4ee14-56db-4e69-83a9-c43b6e9ab05f
+31*org.laptop.WebActivity*#AC32FF,#FF8F00*afb0c2d7d99120e161f28b1c6a9b8fa43310d34f*0*text/plain*2013-08-05T23:29:43.100574*NA*private*1375745383*Angry Birds Chrome*0*c2b06ec8-28e3-4dff-ae63-4abd29a1b8a5
+32*org.laptop.physics*#FF2B34,#FF8F00*a09acd913d4e6e29e1ee78a297bec707693e943c*0*application/x-physics-activity*2013-07-28T16:04:15.757883*NA*private*1375027455*Physics Activity*0*00dc55d6-dd41-4007-ac0b-6e052ee7f8c0
+33*NA*#FF8F00,#BE9E00*860b66dc804d99f1fc8e37de206858cb090a7f0a*NA*image/jpeg*2013-08-04T03:58:46.362597*NA*NA*1375588726*Photo by mao*NA*ca8d6d00-019b-4030-9819-b5babab3e33b
+34*org.sugarlabs.InfoSlicer*#00A0FF,#9A5200*115cb11e5ec1ed732d811dac9e0765477ca5d2cf*0*NA*2013-06-02T19:38:17.258877*NA*private*1370201897*InfoSlicer Activity*0*9929704b-962c-4429-9929-41348a4a637d
+35*NA*#00A0FF,#9A5200*NA*0*image/png*2013-07-14T18:05:57.776447*NA*NA*1373825157*"Screenshot of ""Analyze Journal Activity"""*NA*2ec3b484-678f-4591-bcf6-af529a8cb1b1
+36*org.laptop.physics*#FF2B34,#FF8F00*7a6d6bbaf1f000f309c2d1e1015222d83e0f7c07*0*application/x-physics-activity*2013-08-02T01:13:59.311840*NA*private*1375406039*Physics Activity*0*bee08b1f-0774-4c6f-848e-d42d20cda14d
+37*org.laptop.Oficina*#00A0FF,#9A5200*7777c2ef22b20dd48a04d2b633cc71ffd87b143b*0*image/png*2013-07-14T19:18:03.719403*NA*private*1373829483*Paint Activity*0*8d04250a-b586-480b-bd68-f719ace537d3
+38*org.laptop.Chat*#FF2B34,#FF8F00*c1dad93f7f91c83eeed13241375f81b516b791d9*0*text/plain*2013-07-28T16:55:13.611339*NA*private*1375030513*Chat Activity*0*bbb4c605-d88a-4d96-9387-796102b6ad4d
+39*org.laptop.TamTamEdit*#00A0FF,#9A5200*434c9bdfdd8b28fc51bd219df035bfc044f6dbd2*0*NA*2013-07-22T02:10:04.123136*NA*private*1374459004*TamTamEdit Activity*0*7f1d1f83-0cfd-4861-ba05-167fc6c08ab4
+40*org.laptop.MeasureActivity*#00EA11,#5E008C*9f28b887045454974a650a351d8da48d82fc0f01*0*text/csv*2011-08-18T18:21:54.211292*NA*private*1313691714*Measure Activity*1*53bec112-9ada-4917-9300-b9e1de6dba8d
+41*org.laptop.sugar.ReadActivity*#00A0FF,#9A5200*0a4b3a2374e5ecc3e14ee849a34994b7f7d9267b*0*application/pdf*2013-07-14T18:19:26.168426*NA*NA*1373825966*Among the Meadow People, by Clara Dillingham Pierson*1*1fa9c369-bafe-455c-bbc1-1cb6e1f7ac04
+42*org.laptop.WebActivity*#00EA11,#5E008C*128c44dabd4e165878ae53c99b68f13807262930*0*text/plain*2011-11-06T13:23:19.280309*NA*private*1320614599*Download Skype for Linux*1*304217ab-6397-4cef-951e-a6e5b4453ff0
+43*org.sugarlabs.AnalyzeJournal*#00A0FF,#9A5200*342ccd012144a47e6bf9c2c44584a5fcb199b379*0*application/x-chart-activity*2013-07-28T17:56:44.461170*NA*private*1375034204*Analyze Journal Activity*0*29a42b11-d9cc-4adf-ba97-a251aec8e792
+44*org.laptop.WebActivity*#00A0FF,#9A5200*56dc756ea8fba5663cdede4b311bd09c3f768e1c*0*text/plain*2013-06-15T17:35:47.100523*NA*private*1371317747*OLPC Library*0*ba59d817-5e78-4fa1-b0c5-73fc789e3c5b
+45*com.jotaro.ImplodeActivity*#FF8F00,#BE9E00*2d52364d5304b36d946c24213a5979062b3f025b*0*NA*2013-08-04T04:06:08.993894*NA*private*1375589168*Implode Activity*1*cc6c4e4e-e0c4-4fac-8686-eef368990273
+46*com.garycmartin.Moon*#FF8F00,#BE9E00*226018b1034a0ebcd6f7badfa77f785ac7fbad85*0*NA*2013-08-04T03:59:17.767389*NA*private*1375588757*Moon Activity*1*8dcb5836-881c-40f8-a031-e0ec10da9586
+47*NA*#00A0FF,#9A5200*NA*0*application/vnd.olpc-sugar*2013-07-26T16:46:04.620154*NA*NA*1374857164*analyze_journal-2.xo*NA*5c87a831-0771-41cf-a399-6084076e7aa4
+48*org.laptop.sugar.ReadActivity*#00A0FF,#9A5200*1ccbabf6db2e15b4ba7ee3365b3e16800d76cd6a*0*application/pdf*2013-07-14T18:19:45.287313*NA*NA*1373825985*Grimm's Fairy Tales, by Wilhem Karl Grimm*1*287c22ce-908c-48fc-86b5-257f4af9838d
+49*org.laptop.physics*#00A0FF,#9A5200*3c54cc0135b9ba64ec00c355fb5ed765536e4385*0*application/x-physics-activity*2013-07-23T12:13:21.748636*NA*private*1374581601*Physics Activity*0*e5df26bb-3b1d-4f93-a8fb-dd8bc4ebc602
+50*org.sugarlabs.PortfolioActivity*#FF2B34,#FF8F00*515140cd6671a326e5f59ef50617e2a3a53d6b61*0*NA*2013-07-28T17:11:47.110181*NA*private*1375031507*Portfolio Activity*0*897abe81-2fd1-4c79-b47c-beac729c5fca
+51*NA*NA*NA*NA*audio/x-mpegurl*2013-08-06T00:01:58.262880*NA*NA*1375747318*Jukebox playlist*NA*4e4affe1-4579-4442-b999-8cd0b5ae975f
+52*org.laptop.Pippy*#FF2B34,#FF8F00*6e59ce428b218ef5a8a081dd2f321fb08ad756eb*0*text/x-python*2013-07-28T17:26:03.426005*NA*private*1375032363*Pippy Activity*0*ea1f0dfd-60d4-4ad4-9158-24cde1751965
+53*org.laptop.ImageViewerActivity*#00A0FF,#9A5200*3dd9dda1e881483a898f8886479c715de34da038*0*image/png*2013-06-17T02:31:28.520021*NA*NA*1371436288*"Screenshot of ""Tahoe-LAFS - Welcome"""*NA*b29d662a-a655-4a4c-b04a-6c9095ba4929
+54*NA*NA*NA*NA*audio/x-mpegurl*2013-08-02T01:16:52.976287*NA*NA*1375406212*Jukebox playlist*NA*f794fc08-3d15-45c1-8e37-27dc55a68d0e
+55*org.sugarlabs.AbacusActivity*#00A0FF,#9A5200*ac9e7934bf2f342d91d9aee0f4d6a67511aa1d01*0*NA*2013-07-14T18:06:57.799412*NA*private*1373825217*Abacus Activity*0*6f60c9dc-5842-4f25-b7c5-b8dc525ea49e
+56*org.laptop.ImageViewerActivity*#00A0FF,#9A5200*e711c8ac9e9b05326798810c5b0d8d70c97d0e8f*0*image/png*2013-08-06T00:02:40.816181*NA*NA*1375747360*"Screenshot of ""Tahoe-LAFS Introducer"""*1*818ebf38-db99-4a2f-b39d-e324e4911e3d
+57*org.laptop.WebActivity*#00A0FF,#9A5200*a8c0d4aa5cda9b62f29e322248ba5f48290c191f*0*text/plain*2013-07-14T18:06:39.159964*NA*private*1373825199*Analyze Journal :: Activities for Sugar*0*9c0726a6-3be8-447b-9d36-75c158dcb8f6
+58*org.laptop.Calculate*#FF8F00,#BE9E00*ed953251253a7553db016c4b87b90f751366e06b*0*NA*2013-08-04T04:01:55.179191*NA*private*1375588915*Calculate Activity*1*917d16f9-5d0a-4341-816a-7fdefcb1ec70
+59*tv.alterna.Clock*#FF2B34,#FF8F00*a3b3bb1eabc392d634bc400740f6048961ee31c8*0*NA*2013-07-29T00:40:06.527836*NA*private*1375058406*Clock Activity*0*686b763e-63bb-42fd-a786-5afc72930fef
+60*org.laptop.physics*#00A0FF,#9A5200*efb9b8363b954fa33b5df5eda6980255e0f6a13e*0*application/x-physics-activity*2013-07-28T17:08:39.903654*NA*private*1375031319*Physics Activity*0*7114c6fb-28f8-449d-989d-6b31882c34d5
+61*vu.lux.olpc.Maze*#00EA11,#5E008C*fc4c5a69e50cf00abbaf73edcc9ee4b78c22bc40*0*NA*2013-08-05T23:09:18.786623*NA*private*1375758558*Maze Activity*1*3e57e505-8ed3-44fb-a1fa-1f17a30b6273
+62*org.sugarlabs.SimpleGraph*#00A0FF,#9A5200*934b7ebaae1c1530f74d21f1d38590fb3586133d*0*application/x-chart-activity*2013-07-13T18:35:59.704980*NA*private*1373740559*Chart Activity*0*0f0edb5a-6557-46d4-b79a-a732586d1ec0
+63*org.laptop.Pippy*#00EA11,#5E008C*9ff09baa3f51f60a598fc9c8166c8026b54b1f97*0*text/x-python*2013-08-05T23:09:34.526282*NA*private*1375758574*Pippy Activity*1*d3cece53-96d0-4ec3-96bd-3b68210b3f92
+64*org.laptop.physics*#00A0FF,#9A5200*e82f1f25e7b2f3069363a6d57885d838aa34d01c*0*application/x-physics-activity*2013-06-02T21:49:04.391639*NA*private*1370209744*Physics Activity*0*e50c5c16-8974-4336-8421-a6878d3ce192
+65*org.sugarlabs.XoScope*#00EA11,#5E008C*3b5ba098a5642dbb33f87d40a7520df0f7957302*0*NA*2011-11-06T13:23:28.188647*NA*private*1320614608*Telescope Activity*0*43a6ea1e-dd27-4414-a395-e909b58640ae
+66*org.laptop.MeasureActivity*#FF2B34,#FF8F00*547fc1231a6b274eebebf8c5956c1f81c04d17c0*0*NA*2013-07-30T01:40:47.105402*NA*private*1375148447*Measure Activity*0*6cbc06c8-a633-442d-92f4-b714a5d5a5b1
+67*org.laptop.MeasureActivity*#FF8F00,#BE9E00*29abd47cece94de7617e68e25a5e25a1783254b5*0*NA*2013-08-04T04:05:10.827500*NA*private*1375589110*Measure Activity*1*30bdf32e-0f6f-4228-a665-e70f502e6195
+68*org.laptop.community.Finance*#AC32FF,#FF8F00*87267e499bb275a05ce4eb6083c590515bf39463*0*text/plain*2013-08-03T16:49:34.398404*NA*private*1375548574*Finance Activity*0*0bf49378-bbb7-484e-b4b7-7755fe4ef5ca
+69*org.laptop.RecordActivity*#FF2B34,#FF8F00*efddbc97dd23682cc050d19cea9982da5d86f65c*0*NA*2013-07-28T16:55:07.629818*NA*private*1375030507*Record Activity*0*b3f69fc6-df1a-4328-a1ec-67f67310cd79
+70*org.laptop.ImageViewerActivity*#00A0FF,#9A5200*1a304a892d0855f8b58b64d4f8defab665d772c1*0*image/png*2013-06-17T02:33:41.768431*NA*NA*1371436421*"Screenshot of ""Tahoe-LAFS - Welcome"""*NA*fdbe3604-e888-4107-923a-b2bbdff25732
+71*org.laptop.RecordActivity*#FF8F00,#BE9E00*860b66dc804d99f1fc8e37de206858cb090a7f0a*0*NA*2013-08-04T03:58:46.881481*NA*private*1375588726*Record Activity*1*c7022a25-892a-4848-b539-8b525371d571
+72*org.laptop.ImageViewerActivity*#00EA11,#5E008C*3ffcbf2bc6b932f2c9df32907eb36b08a321cb9f*0*image/png*2013-08-05T23:08:21.423973*NA*NA*1375758501*Waveform 1*1*72c8b8e6-c754-423c-adef-30d000901f19
+73*org.laptop.AbiWordActivity*#FF2B34,#FF8F00*858191a54ddb5fa51b97eb8d3eeb9a051023a239*0*application/vnd.oasis.opendocument.text*2013-07-28T18:29:54.892817*NA*private*1375036194*Write Activity*0*27364ba1-7352-4a23-94d4-204364d43f26
+74*NA*NA*NA*NA*audio/x-mpegurl*2013-08-05T23:59:27.851647*NA*NA*1375747167*Jukebox playlist*NA*488420cc-d964-4000-a591-60ce3b4c4bdf
+75*org.laptop.TamTamMini*#00EA11,#5E008C*59e908708be6929f65df4fec16b327ef64ae5060*0*NA*2011-09-03T22:05:56.473010*NA*private*1315112756*TamTamMini Activity*1*44d12de3-42cb-4582-b75f-4950856429ea
+76*org.laptop.ImageViewerActivity*#00A0FF,#9A5200*a292da51c40e0971bb8be2666f0c7279585dd2bd*0*image/png*2013-07-14T18:58:58.269418*NA*NA*1373828338*"Screenshot of ""Get Books"""*NA*1fe6ae3a-2a49-4020-afbf-1081ea456498
