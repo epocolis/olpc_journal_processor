@@ -30,22 +30,22 @@ def process(paths, output_file_name):
         meta_data_content = f.read()
 
         path = path.split('/')
-        meta_data_name = clean(path[7])
-        if meta_data_name == 'preview':
+        meta_data_name = path[7]
+        if meta_data_name == 'preview' or len(meta_data_content) == 0:
             meta_data_content = 'NA'
-        user_id = clean(path[5])
+        user_id = path[5]
 
         # Get this user's metadata.
         if user_id in users_meta_data:
             # Get the dictionary.
             user_meta_data_dict = users_meta_data[user_id]
-            user_meta_data_dict[meta_data_name] = clean(meta_data_content)
+            user_meta_data_dict[meta_data_name] = meta_data_content
         else:
             # Add a dictionary.
             user_meta_data_dict = {}
-            meta_data_content = clean(meta_data_content)
-            user_meta_data_dict[meta_data_name] = clean(meta_data_content)
-            user_meta_data_dict['SH'] = clean(path[2])
+            meta_data_content = meta_data_content
+            user_meta_data_dict[meta_data_name] = meta_data_content
+            user_meta_data_dict['SH'] = path[2]
             # Stick the dictionary back in.
             users_meta_data[user_id] = user_meta_data_dict
 
@@ -109,14 +109,6 @@ def process(paths, output_file_name):
             filesize,
         ])
         idx = idx + 1
-
-
-def clean(data):
-    data = data.replace(',', ',')
-    if len(data) == 0:
-        return 'NA'
-    else:
-        return data
 
 
 if __name__ == '__main__':
