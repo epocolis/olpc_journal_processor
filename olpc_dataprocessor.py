@@ -53,7 +53,7 @@ def process(paths, output_file_name):
         entry_meta_data_dict[meta_data_name] = meta_data_content
 
     csvfile = open(output_file_name, 'w+')
-    writer = csv.writer(csvfile, delimiter='*')
+    writer = csv.writer(csvfile)
     idx = 0
 
     # Write header row.
