@@ -73,12 +73,12 @@ def process(paths, output_file_name):
         'uid',
         'creation_time',
         'filesize',
+        'xo_serial',
     ])
 
     for key in entries_meta_data:
         a = entries_meta_data[key]
 
-        sh = a.get('SH', 'NA')
         act = a.get('activity', 'NA')
         activity_id = a.get('activity_id', 'NA')
         icon_color = a.get('icon-color', 'NA')
@@ -93,6 +93,7 @@ def process(paths, output_file_name):
         uid = a.get('uid', 'NA')
         creation_time = a.get('creation_time', 'NA')
         filesize = a.get('filesize', 'NA')  # TODO: Could get default from data
+        xo_serial = a.get('xo_serial', 'NA')
 
         writer.writerow([
             idx,
@@ -110,6 +111,7 @@ def process(paths, output_file_name):
             uid,
             creation_time,
             filesize,
+            xo_serial,
         ])
         idx = idx + 1
 
