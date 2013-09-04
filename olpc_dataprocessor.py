@@ -69,6 +69,7 @@ def process(paths, output_file_name):
         'title_set_by_user',
         'uid',
         'creation_time',
+        'filesize',
     ])
 
     for key in users_meta_data:
@@ -89,6 +90,7 @@ def process(paths, output_file_name):
         title_set_by_user = a.get('title_set_by_user', 'NA')
         uid = a.get('uid', 'NA')
         creation_time = a.get('creation_time', 'NA')
+        filesize = a.get('filesize', 'NA')  # TODO: Could get default from data
 
         writer.writerow([
             idx,
@@ -105,6 +107,7 @@ def process(paths, output_file_name):
             title_set_by_user,
             uid,
             creation_time,
+            filesize,
         ])
         idx = idx + 1
 
