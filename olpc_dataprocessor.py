@@ -17,6 +17,9 @@ import csv
 all_data = {}
 entries_meta_data = {}
 
+"""List of metadata keys to ignore."""
+IGNORE_METADATA_KEYS = ['preview']
+
 
 def get_metadata_paths(base_dir):
     paths = glob.glob(base_dir + '/users/*/*/*/*/metadata/*')
@@ -35,13 +38,13 @@ def process(paths, output_file_name):
 
         # Read the content of the file.
         try:
-            if meta_data_name == 'preview':
-                # Skip reading previews, as they're binary and uninteresting.
-                meta_data_content = 'NA'
-            else:
-                # Load all other metadata.
-                with open(path, 'r') as file_fd:
-                    meta_data_content = file_fd.read()
+            if meta_data_name in IGNORE_METADATA_KEYS:
+                # Skip reading this metadata value.
+                continue
+
+            # Load all other metadata.
+            with open(path, 'r') as file_fd:
+                meta_data_content = file_fd.read()
         except EnvironmentError as err:
             print('Error reading file ‘%s’: %s' % (path, err))
             continue
@@ -74,7 +77,6 @@ def process(paths, output_file_name):
         'keep',
         'mime_type',
         'mtime',
-        'preview',
         'share_scope',
         'timestamp',
         'title',
@@ -94,7 +96,6 @@ def process(paths, output_file_name):
         keep = a.get('keep', 'NA')
         mime_type = a.get('mime_type', 'NA')
         mtime = a.get('mtime', 'NA')
-        preview = a.get('preview', 'NA')
         share_scope = a.get('share-scope', 'NA')
         timestamp = a.get('timestamp', 'NA')
         title = a.get('title', 'NA')
@@ -112,7 +113,6 @@ def process(paths, output_file_name):
             keep,
             mime_type,
             mtime,
-            preview,
             share_scope,
             timestamp,
             title,
