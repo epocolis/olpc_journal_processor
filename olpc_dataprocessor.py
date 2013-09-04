@@ -12,6 +12,8 @@ olpc XO log files processor
 import argparse
 import glob
 import csv
+import json
+import os
 
 
 all_data = {}
@@ -26,14 +28,14 @@ def get_metadata_paths(base_dir):
     return paths
 
 
-def process(paths, output_file_name):
+def process(paths, output_file_name, uris_output_file_name=None):
     for path in paths:
         # path will look something like the following, after being split. The
         # 0th element may contain an arbitrarily long base_dir:
         # ['olpc_journal_processor/data/users', 'SHC1010111B',
         #  'datastore-2013-08-06_21:22', '01',
         #  '016d6a99-ae8e-4915-8a8b-f3ba0609da72', 'metadata', 'activity']
-        (_, xo_serial, datastore_id, _, entry_uid, _, meta_data_name) = \
+        (prefix, xo_serial, datastore_id, entry_uid_prefix, entry_uid, _, meta_data_name) = \
             path.rsplit('/', 6)
 
         # Read the content of the file.
@@ -52,6 +54,11 @@ def process(paths, output_file_name):
         if len(meta_data_content) == 0:
             meta_data_content = 'NA'
 
+        # Build the expected name of the data file for this journal entry.
+        # Note: This file might not actually exist.
+        data_file_path = os.path.join(prefix, xo_serial, datastore_id,
+                                      entry_uid_prefix, entry_uid, 'data')
+
         # Get the metadata for this journal entry (identified by entry_uid).
         entry_meta_data_dict = None
         if entry_uid in entries_meta_data:
@@ -59,7 +66,10 @@ def process(paths, output_file_name):
             entry_meta_data_dict = entries_meta_data[entry_uid]
         else:
             # Add a dictionary.
-            entry_meta_data_dict = { 'xo_serial': xo_serial }
+            entry_meta_data_dict = {
+                'xo_serial': xo_serial,
+                'data_file_path': data_file_path,
+            }
             entries_meta_data[entry_uid] = entry_meta_data_dict
 
         entry_meta_data_dict[meta_data_name] = meta_data_content
@@ -67,6 +77,13 @@ def process(paths, output_file_name):
     csvfile = open(output_file_name, 'w+')
     writer = csv.writer(csvfile)
     idx = 0
+
+    if uris_output_file_name is not None:
+        uris_csv_file = open(uris_output_file_name, 'w+')
+        uris_writer = csv.writer(uris_csv_file)
+        uris_idx = 0
+    else:
+        uris_writer = None
 
     # Write header row.
     writer.writerow([
@@ -87,10 +104,17 @@ def process(paths, output_file_name):
         'xo_serial',
     ])
 
+    if uris_writer is not None:
+        uris_writer.writerow([
+            'idx',
+            'entry_idx',  # Foreign key to 'idx' in the main CSV file
+            'uri',
+        ])
+
     for key in entries_meta_data:
         a = entries_meta_data[key]
 
-        act = a.get('activity', 'NA')
+        activity = a.get('activity', 'NA')
         activity_id = a.get('activity_id', 'NA')
         icon_color = a.get('icon-color', 'NA')
         keep = a.get('keep', 'NA')
@@ -105,9 +129,11 @@ def process(paths, output_file_name):
         filesize = a.get('filesize', 'NA')  # TODO: Could get default from data
         xo_serial = a.get('xo_serial', 'NA')
 
+        data_file_path = a.get('data_file_path')  # Note: No default
+
         writer.writerow([
             idx,
-            act,
+            activity,
             icon_color,
             activity_id,
             keep,
@@ -122,6 +148,29 @@ def process(paths, output_file_name):
             filesize,
             xo_serial,
         ])
+
+        # If the entry is for the Browse activity, try and parse the data file
+        # to log the URIs the user visited.
+        if activity == 'org.laptop.WebActivity' and uris_writer is not None \
+           and data_file_path is not None:
+            try:
+                with open(data_file_path, 'r') as file_fd:
+                    data = json.load(file_fd)
+
+                # Log the URIs.
+                tab_histories = data['history']
+                for tab_history in tab_histories:
+                    for entry in tab_history:
+                        uris_writer.writerow([
+                            uris_idx,
+                            idx,
+                            entry['url'],
+                        ])
+                        uris_idx += 1
+            except EnvironmentError as err:
+                print('Error reading WebActivity file ‘%s’: %s' %
+                      (data_file_path, err))
+
         idx = idx + 1
 
 
@@ -134,9 +183,12 @@ if __name__ == '__main__':
                         help='X0’s logs root directory')
     parser.add_argument('-o', '--output', required=True,
                         help='Output file name')
+    parser.add_argument('-u', '--uris-output', required=False,
+                        help='Output file name for browser history')
     args = parser.parse_args()
 
     root_directory = args.root
     output_path = args.output
+    uris_output_path = args.uris_output
     paths = get_metadata_paths(root_directory)
-    process(paths, output_path)
+    process(paths, output_path, uris_output_path)
