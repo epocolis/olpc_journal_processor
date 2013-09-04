@@ -12,7 +12,6 @@ olpc XO log files processor
 import argparse
 import glob
 import csv
-import time
 
 
 all_data = {}
@@ -25,7 +24,6 @@ def get_metadata_paths(base_dir):
 
 
 def process(paths, output_file_name):
-    cnt = 0
     for path in paths:
         # Read the content of the file.
         f = open(path)
@@ -53,7 +51,6 @@ def process(paths, output_file_name):
 
     csvfile = open(output_file_name, 'w+')
     writer = csv.writer(csvfile, delimiter='*')
-    size = []
     idx = 0
 
     # Write header row.
