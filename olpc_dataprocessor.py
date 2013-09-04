@@ -29,25 +29,30 @@ def process(paths, output_file_name):
         f = open(path)
         meta_data_content = f.read()
 
-        path = path.split('/')
-        meta_data_name = path[7]
+        # path will look something like the following, after being split. The
+        # 0th element may contain an arbitrarily long base_dir:
+        # ['olpc_journal_processor/data/users', 'SHC1010111B',
+        #  'datastore-2013-08-06_21:22', '01',
+        #  '016d6a99-ae8e-4915-8a8b-f3ba0609da72', 'metadata', 'activity']
+        (_, xo_serial, datastore_id, _, entry_uid, _, meta_data_name) = \
+            path.rsplit('/', 6)
+
         if meta_data_name == 'preview' or len(meta_data_content) == 0:
             meta_data_content = 'NA'
-        user_id = path[5]
 
         # Get this user's metadata.
-        if user_id in users_meta_data:
+        if entry_uid in users_meta_data:
             # Get the dictionary.
-            user_meta_data_dict = users_meta_data[user_id]
+            user_meta_data_dict = users_meta_data[entry_uid]
             user_meta_data_dict[meta_data_name] = meta_data_content
         else:
             # Add a dictionary.
             user_meta_data_dict = {}
             meta_data_content = meta_data_content
             user_meta_data_dict[meta_data_name] = meta_data_content
-            user_meta_data_dict['SH'] = path[2]
+            user_meta_data_dict['xo_serial'] = xo_serial
             # Stick the dictionary back in.
-            users_meta_data[user_id] = user_meta_data_dict
+            users_meta_data[entry_uid] = user_meta_data_dict
 
     csvfile = open(output_file_name, 'w+')
     writer = csv.writer(csvfile, delimiter='*')
