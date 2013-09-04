@@ -77,7 +77,6 @@ def process(paths, output_file_name):
 
         sh = a.get('SH', 'NA')
         act = a.get('activity', 'NA')
-        share_scope = a.get('share-scope', 'NA')
         activity_id = a.get('activity_id', 'NA')
         icon_color = a.get('icon-color', 'NA')
         keep = a.get('keep', 'NA')
