@@ -15,7 +15,7 @@ import csv
 
 
 all_data = {}
-users_meta_data = {}
+entries_meta_data = {}
 
 
 def get_metadata_paths(base_dir):
@@ -40,19 +40,17 @@ def process(paths, output_file_name):
         if meta_data_name == 'preview' or len(meta_data_content) == 0:
             meta_data_content = 'NA'
 
-        # Get this user's metadata.
-        if entry_uid in users_meta_data:
+        # Get the metadata for this journal entry (identified by entry_uid).
+        entry_meta_data_dict = None
+        if entry_uid in entries_meta_data:
             # Get the dictionary.
-            user_meta_data_dict = users_meta_data[entry_uid]
-            user_meta_data_dict[meta_data_name] = meta_data_content
+            entry_meta_data_dict = entries_meta_data[entry_uid]
         else:
             # Add a dictionary.
-            user_meta_data_dict = {}
-            meta_data_content = meta_data_content
-            user_meta_data_dict[meta_data_name] = meta_data_content
-            user_meta_data_dict['xo_serial'] = xo_serial
-            # Stick the dictionary back in.
-            users_meta_data[entry_uid] = user_meta_data_dict
+            entry_meta_data_dict = { 'xo_serial': xo_serial }
+            entries_meta_data[entry_uid] = entry_meta_data_dict
+
+        entry_meta_data_dict[meta_data_name] = meta_data_content
 
     csvfile = open(output_file_name, 'w+')
     writer = csv.writer(csvfile, delimiter='*')
@@ -77,8 +75,8 @@ def process(paths, output_file_name):
         'filesize',
     ])
 
-    for key in users_meta_data:
-        a = users_meta_data[key]
+    for key in entries_meta_data:
+        a = entries_meta_data[key]
 
         sh = a.get('SH', 'NA')
         act = a.get('activity', 'NA')
