@@ -25,10 +25,6 @@ def get_metadata_paths(base_dir):
 
 def process(paths, output_file_name):
     for path in paths:
-        # Read the content of the file.
-        f = open(path)
-        meta_data_content = f.read()
-
         # path will look something like the following, after being split. The
         # 0th element may contain an arbitrarily long base_dir:
         # ['olpc_journal_processor/data/users', 'SHC1010111B',
@@ -37,7 +33,20 @@ def process(paths, output_file_name):
         (_, xo_serial, datastore_id, _, entry_uid, _, meta_data_name) = \
             path.rsplit('/', 6)
 
-        if meta_data_name == 'preview' or len(meta_data_content) == 0:
+        # Read the content of the file.
+        try:
+            if meta_data_name == 'preview':
+                # Skip reading previews, as they're binary and uninteresting.
+                meta_data_content = 'NA'
+            else:
+                # Load all other metadata.
+                with open(path, 'r') as file_fd:
+                    meta_data_content = file_fd.read()
+        except EnvironmentError as err:
+            print('Error reading file ‘%s’: %s' % (path, err))
+            continue
+
+        if len(meta_data_content) == 0:
             meta_data_content = 'NA'
 
         # Get the metadata for this journal entry (identified by entry_uid).
