@@ -58,6 +58,11 @@ def process(paths, output_file_name, uris_output_file_name=None):
         # Note: This file might not actually exist.
         data_file_path = os.path.join(prefix, xo_serial, datastore_id,
                                       entry_uid_prefix, entry_uid, 'data')
+        try:
+            data_file_size = os.stat(data_file_path).st_size
+        except OSError:
+            # File doesn't exist.
+            data_file_size = -1
 
         # Get the metadata for this journal entry (identified by entry_uid).
         entry_meta_data_dict = None
@@ -69,6 +74,7 @@ def process(paths, output_file_name, uris_output_file_name=None):
             entry_meta_data_dict = {
                 'xo_serial': xo_serial,
                 'data_file_path': data_file_path,
+                'filesize': data_file_size,  # default; may be overridden
             }
             entries_meta_data[entry_uid] = entry_meta_data_dict
 
@@ -126,7 +132,7 @@ def process(paths, output_file_name, uris_output_file_name=None):
         title_set_by_user = a.get('title_set_by_user', 'NA')
         uid = a.get('uid', 'NA')
         creation_time = a.get('creation_time', 'NA')
-        filesize = a.get('filesize', 'NA')  # TODO: Could get default from data
+        filesize = a.get('filesize', 'NA')
         xo_serial = a.get('xo_serial', 'NA')
 
         data_file_path = a.get('data_file_path')  # Note: No default
