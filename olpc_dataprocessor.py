@@ -36,8 +36,8 @@ def process(paths, output_file_name, uris_output_file_name=None):
         # ['olpc_journal_processor/data/users', 'SHC1010111B',
         #  'datastore-2013-08-06_21:22', '01',
         #  '016d6a99-ae8e-4915-8a8b-f3ba0609da72', 'metadata', 'activity']
-        (prefix, xo_serial, datastore_id, entry_uid_prefix, entry_uid, _, meta_data_name) = \
-            path.rsplit('/', 6)
+        (prefix, xo_serial, datastore_id, entry_uid_prefix, entry_uid, _,
+         meta_data_name) = path.rsplit('/', 6)
 
         # Read the content of the file.
         try:
@@ -161,24 +161,30 @@ def process(paths, output_file_name, uris_output_file_name=None):
         if activity == 'org.laptop.WebActivity' and uris_writer is not None \
            and data_file_path is not None:
             try:
-                with open(data_file_path, 'r') as file_fd:
-                    data = json.load(file_fd)
-
-                # Log the URIs.
-                tab_histories = data['history']
-                for tab_history in tab_histories:
-                    for entry in tab_history:
-                        uris_writer.writerow([
-                            uris_idx,
-                            idx,
-                            entry['url'],
-                        ])
-                        uris_idx += 1
+                process_web_activity_data(data_file_path, idx, uris_idx,
+                                          uris_writer)
+                uris_idx += 1
             except EnvironmentError as err:
                 print('Error reading WebActivity file ‘%s’: %s' %
                       (data_file_path, err))
 
         idx = idx + 1
+
+
+def process_web_activity_data(data_file_path, idx, uris_idx, uris_writer):
+    with open(data_file_path, 'r') as file_fd:
+        data = json.load(file_fd)
+
+    # Log the URIs.
+    tab_histories = data['history']
+    for tab_history in tab_histories:
+        for entry in tab_history:
+            uris_writer.writerow([
+                uris_idx,
+                idx,
+                entry['url'],
+            ])
+            uris_idx += 1
 
 
 if __name__ == '__main__':
