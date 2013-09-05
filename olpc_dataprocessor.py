@@ -15,6 +15,7 @@ import glob
 import csv
 import json
 import os
+import urlparse
 
 
 all_data = {}
@@ -116,6 +117,7 @@ def process(paths, output_file_name, uris_output_file_name=None):
             'idx',
             'entry_idx',  # Foreign key to 'idx' in the main CSV file
             'uri',
+            'hostname',
         ])
 
     for key in entries_meta_data:
@@ -179,10 +181,20 @@ def process_web_activity_data(data_file_path, idx, uris_idx, uris_writer):
     tab_histories = data['history']
     for tab_history in tab_histories:
         for entry in tab_history:
+            # Extract the hostname from the URI. If it's a local URI, use
+            # 'localhost'.
+            components = urlparse.urlparse(entry['url'])
+            if components.scheme == 'file':
+                hostname = 'localhost'
+            else:
+                hostname = components.hostname
+
+            # Output to the CSV.
             uris_writer.writerow([
                 uris_idx,
                 idx,
                 entry['url'],
+                hostname,
             ])
             uris_idx += 1
 
