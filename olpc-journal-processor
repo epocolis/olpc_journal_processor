@@ -7,6 +7,9 @@ olpc XO log files processor
 ~~~~~~~~~~~~~~~~~~~~
 :copyright: (c) 2013 by the Leotis Buchanan, see AUTHORS for more details.
 :license: GPL, see LICENSE for more details.
+
+Design reference documentation:
+ - http://wiki.laptop.org/go/XS_Blueprints:Datastore_Simple_Backup_and_Restore
 '''
 
 
@@ -15,6 +18,7 @@ import glob
 import csv
 import json
 import os
+import sys
 import urlparse
 
 
@@ -82,12 +86,18 @@ def process(paths, output_file_name, uris_output_file_name=None):
 
         entry_meta_data_dict[meta_data_name] = meta_data_content
 
-    csvfile = open(output_file_name, 'w+')
+    if output_file_name == '-':
+        csvfile = sys.stdout
+    else:
+        csvfile = open(output_file_name, 'wb+')
     writer = csv.writer(csvfile)
     idx = 0
 
     if uris_output_file_name is not None:
-        uris_csv_file = open(uris_output_file_name, 'w+')
+        if uris_output_file_name == '-':
+            uris_csv_file = sys.stdout
+        else:
+            uris_csv_file = open(uris_output_file_name, 'wb+')
         uris_writer = csv.writer(uris_csv_file)
         uris_idx = 0
     else:
@@ -204,15 +214,24 @@ if __name__ == '__main__':
 
     parser = argparse.ArgumentParser(
         description='Generates a CSV file from one or more XOs’ log data.')
-    parser.add_argument('-r', '--root', required=True,
+    parser.add_argument('-r', '--root', required=False, default='/library',
                         help='X0’s logs root directory')
-    parser.add_argument('-o', '--output', required=True,
+    parser.add_argument('-o', '--output', required=False, default='-',
                         help='Output file name')
     parser.add_argument('-u', '--uris-output', required=False,
                         help='Output file name for browser history')
     args = parser.parse_args()
 
-    root_directory = args.root
+    # Ensure the root_directory is an absolute path.
+    root_directory = os.path.abspath(args.root)
+
+    # Check the given root_directory exists and looks like a data store.
+    if (not os.path.isdir(root_directory) or
+        not os.path.isdir(os.path.join(root_directory, 'users'))):
+        sys.stderr.write('Error: ‘%s’ is not a valid root directory.\n' %
+                         root_directory)
+        sys.exit(1)
+
     output_path = args.output
     uris_output_path = args.uris_output
     paths = get_metadata_paths(root_directory)
