@@ -10,8 +10,11 @@ git_version = check_output(['git', 'describe',
                             '--long', '--tags', '--dirty', '--always'])
 git_version = git_version.rstrip('\n')
 
+# Setup!
 setup(name='olpc-journal-processor',
-      description='Script to extract data from the OLPC Journal data store.',
+      description='Script to extract data from the OLPC Journal data store',
+      long_description='A script to extract data from the OLPC Journal data store on an XS school\n' \
+                       'server and output it in CSV format for further processing.',
       version=git_version,
       author='Leotis Buchanan, Philip Withnall',
       author_email='philip@tecnocode.co.uk',
