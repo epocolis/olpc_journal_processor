@@ -1,0 +1,246 @@
+#!/usr/bin/python
+# coding=utf-8
+# vim: ai ts=4 sts=4 et sw=4 ft=python
+
+# Copyright (C) Philip Withnall 2013 <philip@tecnocode.co.uk>
+#
+# olpc-journal-aggregator is free software: you can redistribute it and/or
+# modify it under the terms of the GNU General Public License as published by
+# the Free Software Foundation, version 3 of the License.
+#
+# olpc-journal-aggregator is distributed in the hope that it will be useful,
+# but WITHOUT ANY WARRANTY; without even the implied warranty of
+# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+# GNU General Public License for more details.
+#
+# You should have received a copy of the GNU General Public License
+# along with olpc-journal-aggregator. If not, see
+# <http://www.gnu.org/licenses/>.
+
+
+"""Central aggregator for statistics from XS Journal data stores.
+
+This script connects to a number of XS school servers using SSH, and executes
+the olpc-journal-processor program on them to extract data from their data
+stores. It then merges these data to produce a small number of output files:
+currently, one containing data about which activities have been used, and
+another containing data about which websites have been accessed.
+
+Further CSV types can be added to CSV_TYPES to allow more merged CSVs to be
+produced.
+
+The arguments accepted by this program are documented by argparse, but a
+typical invocation would be:
+    olpc-journal-aggregator hostnames
+where ‘hostnames’ is a text file containing a list of the hostnames of the
+XS school servers to connect to, one per line. Each hostname is connected to
+using an SSH command of the form:
+    ssh olpcjournalprocessor@hostname --args-from-CSV_TYPES --global-args
+so if custom connection details are needed for a host, they can be added to
+~/.ssh/config as configuration for the given hostname.
+
+Note that olpc-journal-processor must already have been installed on each of
+the hosts being accessed, and the computer running olpc-journal-aggregator must
+have a copy of the private key for the olpcjournalprocessor user on each host.
+"""
+
+
+import argparse
+import csv
+import multiprocessing
+import os
+import subprocess
+import tempfile
+
+
+# Absolute path to a temporary working directory.
+working_directory = None
+
+# List of arguments to pass to every invokation of olpc-journal-processor on
+# every remote host.
+global_processor_arguments = []
+
+
+class CsvType(object):
+    """Simple representation a type of CSV file.
+
+    Each type of CSV file contains a different type of data, and has different
+    headers, for example.
+    """
+    def __init__(self, name, processor_arguments):
+        """Create a new CSV type.
+
+        The name must be safe to use as a directory name. processor_arguments
+        is a (potentially empty) list of arguments to pass to the remote
+        olpc-journal-processor to get it to output this type of CSV.
+        """
+        self.name = name
+        self.args = processor_arguments
+
+CSV_TYPES = [
+    CsvType('main', ['-o', '-']),
+    CsvType('uris', ['-o', '/dev/null', '-u', '-'])
+]
+
+
+def get_server_hostnames(config_file):
+    """Load the hostnames in the given file and return them as a list.
+
+    The file is expected to be formatted with one hostname per line.
+    """
+    hostnames = []
+    with open(config_file, 'r') as file_fd:
+        for line in file_fd:
+            hostnames.append(line.strip())
+
+    # De-duplicate the list before returning it.
+    return list(set(hostnames))
+
+
+def download_csv_from_host(output_fd, hostname, processor_arguments):
+    """Connect to the given host and execute olpc-journal-processor.
+
+    Run it with the given arguments, writing the output to output_fd. If the
+    process returns a non-zero exit status, a CalledProcessError is raised.
+    returning the process' exit status.
+    """
+    ssh_command = ['ssh', 'olpcjournalprocessor@' + hostname]
+    proc_command = ['olpc-journal-processor'] + processor_arguments + \
+        global_processor_arguments
+
+    with open(os.devnull, 'w') as FNULL:
+        proc = subprocess.Popen(ssh_command + proc_command, stdout=output_fd,
+                                stderr=subprocess.PIPE, stdin=FNULL,
+                                close_fds=True, cwd=working_directory)
+        (_, errors) = proc.communicate()
+
+    if proc.returncode != 0:
+        raise subprocess.CalledProcessError(returncode=proc.returncode,
+                                            cmd=ssh_command + proc_command,
+                                            output=errors)
+
+
+def download_csvs_from_host(hostname):
+    downloaded_files = []
+
+    # Note: These subprocesses are deliberately serialised so we only have one
+    # concurrent connection to a given SSH server at once.
+    for csv_type in CSV_TYPES:
+        # Download the main statistics.
+        path = os.path.join(working_directory, csv_type.name,
+                            hostname + '.csv')
+        with open(path, 'w') as file_fd:
+            try:
+                download_csv_from_host(file_fd, hostname, csv_type.args)
+                downloaded_files.append(path)
+            except subprocess.CalledProcessError as proc_err:
+                # Error.
+                print('Error (%s): %s' % (hostname, proc_err.output.strip()))
+                downloaded_files.append(None)
+
+    return tuple(downloaded_files)
+
+
+def download_csvs(hostname_file, process_count):
+    # See: http://stackoverflow.com/a/884846
+    pool = multiprocessing.Pool(processes=process_count)
+    hostnames = get_server_hostnames(hostname_file)
+
+    results = []
+    r = pool.map_async(download_csvs_from_host, hostnames,
+                       callback=results.append)
+    r.wait()
+
+    # All child processes have now terminated, and results is now a list of
+    # lists of downloaded files (on success) or None (on failure) for each
+    # host.
+    # FIXME: Don't know how the extra wrapper list gets into results.
+    return results[0]
+
+
+def merge_csvs(downloaded_csvs):
+    merged_files = []
+
+    for type_index, csv_type in enumerate(CSV_TYPES):
+        output_csv_path = os.path.join(working_directory,
+                                       csv_type.name + '.csv')
+        with open(output_csv_path, 'wb') as output_csv_file:
+            writer = csv.writer(output_csv_file)
+
+            # Each element of downloaded_csvs is a tuple representing the
+            # status of the downloads from a single host (indexed by
+            # host_index).
+            for host_index, host_downloads in enumerate(downloaded_csvs):
+                # If the path is None, there was an error downloading this
+                # file.
+                input_csv_path = host_downloads[type_index]
+                if input_csv_path is None:
+                    continue
+
+                # Open the CSV and append it to the output CSV.
+                with open(input_csv_path, 'rb') as input_csv_file:
+                    reader = csv.reader(input_csv_file)
+
+                    # Discard the first line.
+                    if host_index != 0:
+                        reader.next()
+
+                    # Copy the remainder to the output file.
+                    writer.writerows(reader)
+
+            merged_files.append(output_csv_path)
+
+    return merged_files
+
+
+def create_working_directory():
+    """Create a new working directory hierarchy.
+
+    Return the absolute path for its root. If creation of any directory fails,
+    raise an OSError.
+    """
+    # Create a new temporary directory.
+    root_dir = tempfile.mkdtemp(prefix='olpc-journal-aggregator_')
+
+    # Create subdirectories for each CSV type.
+    for csv_type in CSV_TYPES:
+        os.mkdir(os.path.join(root_dir, csv_type.name), 0700)
+
+    return root_dir
+
+
+if __name__ == '__main__':
+    __author__ = 'Philip Withnall'
+
+    parser = argparse.ArgumentParser(
+        description='Connects to XS servers and aggregates statistics from '
+                    'their log data.')
+    parser.add_argument('config_file',
+                        help='Configuration file listing hosts to connect to')
+    parser.add_argument('-n', '--num-processes', required=False, default=20,
+                        help='Number of hosts to query concurrently')
+    parser.add_argument('processor_args', nargs='*', type=str, default=[],
+                        help='Additional arguments to pass to every '
+                             'olpc-journal-processor instance on the remote '
+                             'hosts')
+    args = parser.parse_args()
+
+    # Ensure the config_file is an absolute path.
+    config_file = os.path.abspath(args.config_file)
+
+    # Save the global arguments.
+    global_processor_arguments = args.processor_args
+
+    # Set up a working directory.
+    working_directory = create_working_directory()
+
+    # Download and merge the CSVs.
+    downloaded_csvs = download_csvs(config_file, args.num_processes)
+    merged_csvs = merge_csvs(downloaded_csvs)
+
+    # Print the output file names.
+    print('Outputted to files:')
+    for out in merged_csvs:
+        print(' • %s' % out)
+    print('Working data left in ‘%s’. Please delete this once you’re '
+          'finished.' % working_directory)
