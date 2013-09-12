@@ -193,18 +193,22 @@ def process_web_activity_data(data_file_path, idx, uris_idx, uris_writer):
     for tab_history in tab_histories:
         for entry in tab_history:
             # Extract the hostname from the URI. If it's a local URI, use
-            # 'localhost'.
+            # 'localhost'. Only put the full URI in the output if it's local;
+            # otherwise, just put the domain and protocol to preserve the kids'
+            # privacy.
             components = urlparse.urlparse(entry['url'])
             if components.scheme == 'file':
                 hostname = 'localhost'
+                uri = entry['url']
             else:
                 hostname = components.hostname
+                uri = ''
 
             # Output to the CSV.
             uris_writer.writerow([
                 uris_idx,
                 idx,
-                entry['url'],
+                uri,
                 hostname,
                 components.scheme,
             ])
