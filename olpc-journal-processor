@@ -15,6 +15,7 @@ Design reference documentation:
 
 import argparse
 import glob
+import hashlib
 import csv
 import json
 import os
@@ -166,7 +167,7 @@ def process(paths, output_file_name, uris_output_file_name=None):
             uid,
             creation_time,
             filesize,
-            xo_serial,
+            hashlib.sha256(xo_serial).hexdigest(),
         ])
 
         # If the entry is for the Browse activity, try and parse the data file
