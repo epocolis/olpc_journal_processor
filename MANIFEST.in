@@ -1,3 +1,3 @@
-include README setup.cfg MANIFEST.in LICENSE olpc-journal-processor setup.py
+include README setup.cfg MANIFEST.in LICENSE olpc-journal-processor olpc-journal-aggregator setup.py
 recursive-include docs *
 # Note: samples/ directory is specifically not included.

@@ -21,4 +21,4 @@ setup(name='olpc-journal-processor',
       license='GPLv3',
       platforms=['noarch'],
       url='https://github.com/Leotis/olpc_journal_processor',
-      scripts=['olpc-journal-processor'])
+      scripts=['olpc-journal-processor', 'olpc-journal-aggregator'])
