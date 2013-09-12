@@ -128,6 +128,7 @@ def process(paths, output_file_name, uris_output_file_name=None):
             'entry_idx',  # Foreign key to 'idx' in the main CSV file
             'uri',
             'hostname',
+            'scheme',
         ])
 
     for key in entries_meta_data:
@@ -205,6 +206,7 @@ def process_web_activity_data(data_file_path, idx, uris_idx, uris_writer):
                 idx,
                 entry['url'],
                 hostname,
+                components.scheme,
             ])
             uris_idx += 1
 
